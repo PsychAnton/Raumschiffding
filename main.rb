@@ -1,3 +1,6 @@
+require 'bundler'
+Bundler.setup(:default)
+
 require 'gosu'
 
 class GameWindow < Gosu::Window
