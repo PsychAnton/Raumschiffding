@@ -25,10 +25,7 @@ class GameWindow < Gosu::Window
       @player.move_right
     end
    
-    until @x == 600 
-      @monster.move_right
-    end
-    # klappt nicht!
+    @monster.move
 
   end
 
@@ -78,20 +75,21 @@ class Monster
     @image = Gosu::Image.new("monster.png")
     @x = @y = @vel_x = @vel_y = 0.0
     @angle = 0
+    @dir = 2
   end
 
   def warp(x, y)
     @x, @y = x, y
   end
 
-  def move_right
-    if @x < 640 - @image.width/2
-      @x += 2
+  def move
+    @x += @dir
+    if @x > 610
+      @dir = -@dir
     end
-  end
-
-  def move_left
-      @x -= 2
+    if @x < 30
+      @dir = -@dir
+    end
   end
 
   def draw
